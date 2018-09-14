@@ -7,25 +7,8 @@ class Euler(object):
     def __call__(self):
         not_increase_decrease = list()
         for each_num in range(1, self.num+1):
-            num_size = 0
             num = each_num
-            if 0 <= num < 10:
-                num_size = 1
-            elif num < 100:
-                num_size = 2
-            elif num < 1000:
-                num_size = 3
-            elif num < 10000:
-                num_size = 4
-            elif num < 100000:
-                num_size = 5
-            elif num < 1000000:
-                num_size = 6
-            elif num < 10000000:
-                num_size = 7
-            elif num < 100000000:
-                num_size = 8
-
+            num_size = len(str(num))
             str_num = str(num)
             last_num = int(str_num[0])
             increase = False
