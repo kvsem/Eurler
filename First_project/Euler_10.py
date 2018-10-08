@@ -3,23 +3,24 @@ class Euler(object):
 
     def __init__(self, num):
         self.num = num
-        self.num_list = [x for x in range(2, num+1)]
+        self.num_list = [2, 3]
 
     def __call__(self):
-        for i in self.num_list:
-            print(f"{i} 의 배수 제거")
-            for j in range(4, self.num+1):
-                if i == j:
-                    continue
-                if j % i != 0:
-                    continue
-                if j not in self.num_list:
-                    continue
-                del self.num_list[self.num_list.index(j)]
-        print(self.num_list)
+        print(self.primes_up_to_good(self.num))
+        print(sum(self.primes_up_to_good(self.num)))
+
+    def primes_up_to_good(self, n: int) -> [int]:
+        seive = [False, False, True, True] + [True] * (n - 1)
+        k = 5
+        while k < n + 1:
+            if seive[k]:
+                seive[k * 2::k] = [False] * (((n + 2) // k) - 1)
+            k += 2
+        return [x for x in range(n + 1) if seive[x]]
 
 
 if __name__ == "__main__":
-    input = 200000
+    input = 2000001
     euler = Euler(input)
     euler()
+
